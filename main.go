@@ -58,6 +58,12 @@ star:
 	var word string
 	fmt.Scanln(&word)
 
+	if word == "" {
+		fmt.Println(style("INPUT CANNOT BE EMPTY", "\033[1;31m", ""))
+		fmt.Println(style("TRY AGAIN", "\033[1;31m", ""))
+		goto star
+	}
+
 	isLetter := hasLetter(word)
 	isNumber := hasNumber(word)
 
@@ -99,7 +105,7 @@ start:
 			fmt.Println(" ")
 			fmt.Println(style("WOULD YOU LIKE TO;\n 1.RESTART\n  OR\n 2.CHANGE THE OPERATION\n", "\033[1;33m", ""))
 			fmt.Println(" ")
-stop:
+		stop:
 			fmt.Print(style("OPTION: ", "\033[1;30m", ""))
 
 			var choice string
@@ -150,8 +156,7 @@ stop:
 		fmt.Println(" ")
 		fmt.Println(style("EXITING..........", "\033[1m", ""))
 		fmt.Println(" ")
-		
-		goto start2
+		return
 	default:
 		fmt.Println(style("ERROR!! PLEASE SELECT FROM THE GIVING RANGE", "\033[1;31m", ""))
 		fmt.Println(" ")
@@ -161,7 +166,6 @@ stop:
 
 	fmt.Println(style("RESULT:", "\033[1;32m", ""), result)
 	fmt.Println(" ")
-start2 :
 	fmt.Println(style("WOULD YOU LIKE TO PERFORM ANOTHER OPERATION??", "\033[1;35m", ""))
 	fmt.Println(" ")
 	fmt.Println(style("YES", "\033[1;34m", ""))
