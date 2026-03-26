@@ -18,7 +18,7 @@ func capitalize(s string) string {
 
 func lastLetter(s string) string {
 
-	if len(s) > 1 {
+	if len(s) > 0 {
 		return string(s[len(s)-1])
 	}
 	return s
@@ -32,14 +32,42 @@ func deleteIndex(s string, index int) string {
 	return s[:index] + s[index+1:]
 }
 
+func hasLetter(s string) bool {
+	for _, char := range s {
+		if !(char >= 'A' && char <= 'Z' || char >= 'a' && char <= 'z') {
+			return false
+		}
+	}
+	return true
+}
+
+func hasNumber(s string) bool {
+	for _, char := range s {
+		if !( char >= '0' && char <= '9') {
+			return false
+		}
+	}
+	return true
+}
+
 func main() {
 star:
 	fmt.Println(" ")
-	fmt.Println(style("INPUT WORD: ", "\033[33m", ""))
+	fmt.Println(style("INPUT : ", "\033[33m", ""))
 
 	var word string
 	fmt.Scanln(&word)
 
+	isLetter := hasLetter(word)
+	isNumber := hasNumber(word)
+
+	if !(isLetter || isNumber) {
+		fmt.Println(style("MUST EITHER BE AN ALPHABET OR AN INTERGER", "\033[31m", ""))
+		fmt.Println(style("TRY AGAIN", "\033[31m", ""))
+		goto star
+	}
+
+	
 	fmt.Println(" ")
 	fmt.Println(style("************* AVAILIABLE OPERATIONS ***************", "\033[35m", ""))
 	fmt.Println(" ")
@@ -49,11 +77,15 @@ start:
 	fmt.Println(style("1. LAST LETTER", "\033[34m", ""))
 	fmt.Println(style("2. CAPITALIZE", "\033[34m", ""))
 	fmt.Println(style("3. DELETE INDEX", "\033[34m", ""))
+	fmt.Println(style("4. EXIT PROGRAM", "\033[34m", ""))
 	fmt.Println(" ")
 
 	fmt.Print(style("OPTION: ", "\033[30m", ""))
+	fmt.Print(" ")
 	var option string
 	fmt.Scanln(&option)
+
+
 
 	var result string
 	switch option {
@@ -63,6 +95,28 @@ start:
 		result = lastLetter(word)
 
 	case "2":
+		if !hasLetter(word) {
+
+			fmt.Println(style("INPUT DOES NOT MATCH OPERATION", "\033[31m", ""))
+			fmt.Println(style("CANNOT CAPITALIZE INTEGERS", "\033[31m", ""))
+			fmt.Println(" ")
+			fmt.Println(style("WOULD YOU LIKE TO;\n 1.RESTART\n  OR\n 2.CHANGE THE OPERATION\n", "\033[33m", ""))
+			fmt.Println(" ")
+			fmt.Print(style("OPTION: ", "\033[30m", ""))
+
+			var choice string
+			fmt.Scanln(&choice)
+
+			switch choice {
+
+			case "1" :
+				goto star
+
+			case "2" :
+				goto start
+			}
+			
+		}
 		fmt.Println(" ")
 		result = capitalize(word)
 
@@ -78,6 +132,9 @@ start:
 			goto start1
 		}
 		result = deleteIndex(word, index)
+	case "4" :
+		fmt.Println(style("EXITING...", "\033[32m", ""))
+		return
 	default:
 		fmt.Println(style("ERROR!! PLEASE SELECT FROM THE GIVING RANGE", "\033[31m", ""))
 		fmt.Println(" ")
@@ -95,15 +152,16 @@ start:
 	fmt.Println(" ")
 stap:
 	fmt.Print(style("OPTION: ", "\033[30m", ""))
+	fmt.Println(" ")
 	var resuse string
 	fmt.Scanln(&resuse)
 
 	switch resuse {
-	case "yes":
+	case "yes", "YES":
 		fmt.Println(" ")
 		goto star
 
-	case "no":
+	case "no", "NO":
 		fmt.Println(" ")
 		fmt.Println(style("IT WAS NICE WORKING WITH YOU!", "\033[32m", ""))
 		fmt.Println(style("GOODBYE", "\033[32m", ""))
