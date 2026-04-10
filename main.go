@@ -74,11 +74,15 @@ func hasNumber(s string) bool {
 
 func main() {
 
+	fmt.Println(" ")
+	fmt.Println(style("*************** WELCOME TO MJ'S COOL TEXT EDITING TOOL ****************", "\033[1;33m"))
+	fmt.Println(" ")
+
 	reader := bufio.NewReader(os.Stdin)
 	for {
 
 		fmt.Println(" ")
-		fmt.Print(style("INPUT : ", "\033[1;33m"))
+		fmt.Print(style("TEXT: ", "\033[1;33m"))
 
 		word, _ := reader.ReadString('\n')
 		word = strings.TrimSpace(word)
