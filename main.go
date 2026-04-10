@@ -48,7 +48,7 @@ func hasNumber(s string) bool {
 }
 
 func main() {
-start:
+
 	reader := bufio.NewReader(os.Stdin)
 	for {
 
@@ -157,7 +157,7 @@ start:
 					}
 
 					if index < 0 || index >= len(word) {
-						fmt.Println(style("ERROR!! INDEX IS OUT OF RANGE IT MUST BE BETWEEN 0 AND %d\n", "\033[1;31m"), len(word)-1)
+						fmt.Printf(style("ERROR!! INDEX IS OUT OF RANGE IT MUST BE BETWEEN 0 AND %d\n", "\033[1;31m"), len(word)-1)
 						fmt.Println(style("TRY AGAIN", "\033[1;31m"))
 						fmt.Println(" ")
 						continue
