@@ -27,6 +27,31 @@ func deleteIndex(s string, index int) string {
 	return s[:index] + s[index+1:]
 }
 
+func reverseString(input string) string {
+	words := strings.Fields(input)
+	var reverse = func(s string) string {
+		res := ""
+		for i := len(s) - 1; i >= 0; i-- {
+			res += string(s[i])
+		}
+		return res
+	}
+	for i := range words {
+		words[i] = reverse(words[i])
+	}
+	return strings.Join(words, " ")
+}
+
+func countCharacter(s string) string{
+	count := 0
+	for _, r := range s {
+		if (r >= 'A' && r <= 'Z') || (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9') {
+			count++
+		}
+	}
+	return strconv. Itoa(count)
+}
+
 func hasLetter(s string) bool {
 	for _, char := range s {
 		if !((char >= 'A' && char <= 'Z') ||
@@ -86,7 +111,9 @@ func main() {
 			fmt.Println(style("1. LAST CHARACTER", "\033[1;34m"))
 			fmt.Println(style("2. UPPERCASE WORDS", "\033[1;34m"))
 			fmt.Println(style("3. DELETE INDEX", "\033[1;34m"))
-			fmt.Println(style("4. EXIT PROGRAM", "\033[1;34m"))
+			fmt.Println(style("4. REVERSE WORD", "\033[1;34m"))
+			fmt.Println(style("5. COUNT CHARACTERS", "\033[1;34m"))
+			fmt.Println(style("6. EXIT PROGRAM", "\033[1;34m"))
 			fmt.Println(" ")
 
 			fmt.Print(style("OPTION: ", "\033[1;30m"))
@@ -98,7 +125,6 @@ func main() {
 
 			case "1":
 				result = lastCharacter(word)
-				break
 
 			case "2":
 				if !hasLetter(word) {
@@ -118,7 +144,6 @@ func main() {
 						switch choice {
 
 						case "1":
-							break
 
 						case "2":
 
@@ -139,7 +164,6 @@ func main() {
 					continue
 				}
 				result = toUpper(word)
-				break
 
 			case "3":
 				for {
@@ -167,11 +191,19 @@ func main() {
 					break
 				}
 
-				break
+				continue
 
 			case "4":
+				result = reverseString(word)
+				
+
+			case "5":
+				result = countCharacter(word)
+				
+
+			case "6":
 				fmt.Println(" ")
-				fmt.Println(style("EXITING.......", "\033[1;32m"))
+				fmt.Println(style("EXITING.......", "\033[1m"))
 				fmt.Println(" ")
 				return
 
@@ -193,6 +225,7 @@ func main() {
 			fmt.Println(" ")
 			fmt.Println(style("YES", "\033[1;34m"))
 			fmt.Println(style("NO", "\033[1;34m"))
+			fmt.Println(" ")
 
 			fmt.Print(style("OPTION: ", "\033[1;30m"))
 
