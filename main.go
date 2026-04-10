@@ -73,7 +73,7 @@ star:
 	isNumber := hasNumber(word)
 
 	if !(isLetter || isNumber) {
-		fmt.Println(style("MUST EITHER BE AN ALPHABET OR AN INTEGER", "\033[1;31m", ""))
+		fmt.Println(style("MUST EITHER BE AN ALPHABET OR AN INTEGER NO SPACES ALLOWED BETWEEN INPUT", "\033[1;31m", ""))
 		fmt.Println(style("TRY AGAIN", "\033[1;31m", ""))
 		goto star
 	}
@@ -84,6 +84,7 @@ star:
 	fmt.Println(style("PLEASE SELECT AN OPERATION: ", "\033[1;33m", ""))
 
 start:
+	fmt.Println(" ")
 	fmt.Println(style("1. LAST LETTER", "\033[1;34m", ""))
 	fmt.Println(style("2. CAPITALIZE", "\033[1;34m", ""))
 	fmt.Println(style("3. DELETE INDEX", "\033[1;34m", ""))
@@ -110,7 +111,7 @@ start:
 			fmt.Println(style("INPUT DOES NOT MATCH OPERATION", "\033[1;31m", ""))
 			fmt.Println(style("CANNOT CAPITALIZE INTEGERS", "\033[1;31m", ""))
 			fmt.Println(" ")
-			fmt.Println(style("WOULD YOU LIKE TO;\n 1.RESTART\n  OR\n 2.CHANGE THE OPERATION\n", "\033[1;33m", ""))
+			fmt.Println(style("WOULD YOU LIKE TO;\n 1.RESTART\n      OR\n 2.CHANGE THE OPERATION\n     OR\n 3. EXIT PROGRAM\n", "\033[1;33m", ""))
 			fmt.Println(" ")
 		stop:
 
@@ -128,6 +129,13 @@ start:
 
 			case "2":
 				goto start
+
+			case "3":
+
+				fmt.Println(" ")
+				fmt.Println(style("EXITING..........", "\033[1m", ""))
+				fmt.Println(" ")
+				return
 
 			default:
 				fmt.Println(style("PLEASE SELECT FROM THE RANGE OF OPTIONS", "\033[1;31m", ""))
@@ -148,7 +156,7 @@ start:
 		n, err := fmt.Scanln(&index)
 
 		if n == 0 || err != nil {
-			fmt.Println(style("INDEX SHOULD BE AN INTEGER", "\033[1;31m", ""))
+			fmt.Println(style("INDEX SHOULD BE AN INTEGER NO SPACES ALLOWED BETWEEN THE INTEGERS", "\033[1;31m", ""))
 			fmt.Println(style("TRY AGAIN", "\033[1;31m", ""))
 
 			reader4 := bufio.NewReader(os.Stdin)
@@ -184,12 +192,14 @@ start:
 	fmt.Println(style("NO", "\033[1;34m", ""))
 	fmt.Println(" ")
 stap:
-	fmt.Print(style("OPTION: ", "\033[1;30m", ""))
-	fmt.Println(" ")
-	var resuse string
-	fmt.Scanln(&resuse)
 
-	switch strings.ToLower(resuse) {
+	reader5 := bufio.NewReader(os.Stdin)
+	fmt.Print(style("OPTION: ", "\033[1;30m", ""))
+
+	reuse, _ := reader5.ReadString('\n')
+	reuse = strings.TrimSpace(reuse)
+
+	switch strings.ToLower(reuse) {
 	case "yes":
 		fmt.Println(" ")
 		goto star
