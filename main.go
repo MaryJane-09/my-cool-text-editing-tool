@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -52,11 +54,14 @@ func hasNumber(s string) bool {
 
 func main() {
 star:
-	fmt.Println(" ")
-	fmt.Println(style("INPUT : ", "\033[33m", ""))
 
-	var word string
-	fmt.Scanln(&word)
+	reader := bufio.NewReader(os.Stdin)
+
+	fmt.Println(" ")
+	fmt.Print(style("INPUT : ", "\033[33m", ""))
+
+	word, _ := reader.ReadString('\n')
+	word = strings.TrimSpace(word)
 
 	if word == "" {
 		fmt.Println(style("INPUT CANNOT BE EMPTY", "\033[1;31m", ""))
@@ -85,10 +90,12 @@ start:
 	fmt.Println(style("4. EXIT PROGRAM", "\033[1;34m", ""))
 	fmt.Println(" ")
 
+	reader2 := bufio.NewReader(os.Stdin)
 	fmt.Print(style("OPTION: ", "\033[1;30m", ""))
 	fmt.Print(" ")
-	var option string
-	fmt.Scanln(&option)
+
+	option, _ := reader2.ReadString('\n')
+	option = strings.TrimSpace(option)
 
 	var result string
 	switch option {
@@ -106,10 +113,13 @@ start:
 			fmt.Println(style("WOULD YOU LIKE TO;\n 1.RESTART\n  OR\n 2.CHANGE THE OPERATION\n", "\033[1;33m", ""))
 			fmt.Println(" ")
 		stop:
+
+			reader3 := bufio.NewReader(os.Stdin)
+
 			fmt.Print(style("OPTION: ", "\033[1;30m", ""))
 
-			var choice string
-			fmt.Scanln(&choice)
+			choice, _ := reader3.ReadString('\n')
+			choice = strings.TrimSpace(choice)
 
 			switch choice {
 
@@ -141,8 +151,10 @@ start:
 			fmt.Println(style("INDEX SHOULD BE AN INTEGER", "\033[1;31m", ""))
 			fmt.Println(style("TRY AGAIN", "\033[1;31m", ""))
 
-			var discard string
-			fmt.Scanln(&discard)
+			reader4 := bufio.NewReader(os.Stdin)
+
+			discard, _ := reader4.ReadString('\n')
+			discard = strings.TrimSpace(discard)
 			goto start1
 		}
 		if index < 0 || index >= len(word) {
@@ -177,12 +189,12 @@ stap:
 	var resuse string
 	fmt.Scanln(&resuse)
 
-	switch resuse {
-	case "yes", "YES":
+	switch strings.ToLower(resuse) {
+	case "yes":
 		fmt.Println(" ")
 		goto star
 
-	case "no", "NO":
+	case "no":
 		fmt.Println(" ")
 		fmt.Println(style("IT WAS NICE WORKING WITH YOU!🎊", "\033[1;32m", ""))
 		fmt.Println(style("GOODBYE", "\033[1;32m", ""))
