@@ -24,6 +24,9 @@ func lastCharacter(s string) string {
 }
 
 func deleteIndex(s string, index int) string {
+	if index < 0 || index >= len(s) {
+		return s
+	}
 	return s[:index] + s[index+1:]
 }
 
@@ -42,14 +45,14 @@ func reverseString(input string) string {
 	return strings.Join(words, " ")
 }
 
-func countCharacter(s string) string{
+func countCharacter(s string) string {
 	count := 0
 	for _, r := range s {
 		if (r >= 'A' && r <= 'Z') || (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9') {
 			count++
 		}
 	}
-	return strconv. Itoa(count)
+	return strconv.Itoa(count)
 }
 
 func hasLetter(s string) bool {
@@ -96,7 +99,7 @@ func main() {
 		}
 
 		if !(hasLetter(word) || hasNumber(word)) {
-			fmt.Println(style("MUST BE ONLY LETTERS (SPACES ALLOWED) OR ONLY NUMBERS (NO SPACES)", "\033[1;31m"))
+			fmt.Println(style("MUST BE ONLY LETTERS (SPACES ALLOWED BETWEEN THEM) OR ONLY NUMBERS (NO SPACES ALLOWED BETWEEN THEM)", "\033[1;31m"))
 			fmt.Println(style("TRY AGAIN", "\033[1;31m"))
 			continue
 		}
@@ -184,6 +187,20 @@ func main() {
 						continue
 					}
 
+					parts := strings.Fields(input)
+
+					var indices []int
+
+					for _, p := range parts {
+						num, err := strconv.Atoi(p)
+						if err != nil {
+							fmt.Println(style("INDEX SHOULD BE AN INTEGER. NO SPACES ALLOWED BETWEEN THEM", "\033[1;31m"))
+							fmt.Println(style("TRY AGAIN", "\033[1;31m"))
+							continue
+
+						}
+					}
+
 					if index < 0 || index >= len(word) {
 						fmt.Printf(style("ERROR!! INDEX IS OUT OF RANGE IT MUST BE BETWEEN 0 AND %d\n", "\033[1;31m"), len(word)-1)
 						fmt.Println(style("TRY AGAIN", "\033[1;31m"))
@@ -191,19 +208,31 @@ func main() {
 						continue
 					}
 
-					result = deleteIndex(word, index)
+					indices = append(indices, index)
+
+					if len(indices) == 0 {
+						fmt.Println(style("NO VALID INDICES PROVIDED", "\033[1;31m"))
+						continue
+					}
+
+					removedChar := string(word[index])
+
+					highlighted := word[:index] + "[" + style(removedChar, "\033[1;31m") + "]" + word[index+1:]
+
+					result = fmt.Sprintf(
+						"\nOriginal: %s\nRemoved: %s\nNew Result: %s",
+						highlighted,
+						style(removedChar, "\033[1;31m"),
+						deleteIndex(word, index),
+					)
 					break
 				}
 
-				continue
-
 			case "4":
 				result = reverseString(word)
-				
 
 			case "5":
 				result = countCharacter(word)
-				
 
 			case "6":
 				fmt.Println(" ")
