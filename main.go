@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -179,52 +180,97 @@ func main() {
 					input, _ := reader.ReadString('\n')
 					input = strings.TrimSpace(input)
 
-					index, err := strconv.Atoi(input)
-
-					if err != nil {
-						fmt.Println(style("INDEX SHOULD BE AN INTEGER. NO SPACES ALLOWED BETWEEN THEM", "\033[1;31m"))
-						fmt.Println(style("TRY AGAIN", "\033[1;31m"))
-						continue
-					}
-
 					parts := strings.Fields(input)
 
 					var indices []int
+
+					hasError := false
 
 					for _, p := range parts {
 						num, err := strconv.Atoi(p)
 						if err != nil {
 							fmt.Println(style("INDEX SHOULD BE AN INTEGER. NO SPACES ALLOWED BETWEEN THEM", "\033[1;31m"))
 							fmt.Println(style("TRY AGAIN", "\033[1;31m"))
-							continue
+							hasError = true
+							break
 
+						}
+
+						// if num < 0 || num >= len(word) {
+						// 	fmt.Printf(style("ERROR!! THE INDEX %d IS OUT OF RANGE IT MUST BE BETWEEN 0 AND %d\n", "\033[1;31m"), num, len(word)-1)
+						// 	fmt.Println(style("TRY AGAIN", "\033[1;31m"))
+						// 	hasError = true
+						// 	break
+						// }
+						indices = append(indices, num)
+					}
+
+
+					anything := ""
+
+					for i := range indices {
+						if indices[i] < 0 || indices[i] >= len(word)-1 {
+							anything += strconv.Itoa(indices[i]) + ", "
 						}
 					}
 
-					if index < 0 || index >= len(word) {
-						fmt.Printf(style("ERROR!! INDEX IS OUT OF RANGE IT MUST BE BETWEEN 0 AND %d\n", "\033[1;31m"), len(word)-1)
+					if len(anything) > 0 {
+						fmt.Printf(style("ERROR!! THE INDEX "+anything + "IS OUT OF RANGE IT MUST BE BETWEEN 0 AND %d\n", "\033[1;31m"), len(word)-1)
 						fmt.Println(style("TRY AGAIN", "\033[1;31m"))
-						fmt.Println(" ")
+						fmt.Println()
 						continue
+						
+
 					}
 
-					indices = append(indices, index)
+					if hasError {
+						fmt.Println()
+						continue
+					}
 
 					if len(indices) == 0 {
 						fmt.Println(style("NO VALID INDICES PROVIDED", "\033[1;31m"))
 						continue
 					}
 
-					removedChar := string(word[index])
+					sort.Slice(indices, func(i, j int) bool {
+						return indices[i] > indices[j]
+					})
 
-					highlighted := word[:index] + "[" + style(removedChar, "\033[1;31m") + "]" + word[index+1:]
+					original := word
+
+					var removed []string
+
+					r := []rune(original)
+
+					highlighted := ""
+
+					removedMap := make(map[int]bool)
+
+					for _, idx := range indices {
+						removedMap[idx] = true
+					}
+
+					for i, ch := range r {
+						if removedMap[i] {
+							highlighted += "[" + style(string(ch), "\033[1;31m") + "]"
+							removed = append(removed, style(string(ch), "\033[1;31m"))
+						} else {
+							highlighted += string(ch)
+						}
+					}
+
+					for _, idx := range indices {
+						word = deleteIndex(word, idx)
+					}
 
 					result = fmt.Sprintf(
-						"\nOriginal: %s\nRemoved: %s\nNew Result: %s",
+						"\nOriginal: %s\nRemoved: %s\nResult: %s",
 						highlighted,
-						style(removedChar, "\033[1;31m"),
-						deleteIndex(word, index),
+						strings.Join(removed, ", "),
+						word,
 					)
+
 					break
 				}
 
