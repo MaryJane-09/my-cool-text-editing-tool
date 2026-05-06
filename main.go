@@ -56,6 +56,17 @@ func countCharacter(s string) string {
 	return strconv.Itoa(count)
 }
 
+// janai's func
+// func countCharacter(s string) string {
+
+// 	s = strings.ReplaceAll(s, " ", "")
+
+// 	length := len(s)
+// 	result := strconv.Itoa(length)
+
+// 	return result
+// }
+
 func hasLetter(s string) bool {
 	for _, char := range s {
 		if !((char >= 'A' && char <= 'Z') ||
@@ -205,7 +216,6 @@ func main() {
 						indices = append(indices, num)
 					}
 
-
 					anything := ""
 
 					for i := range indices {
@@ -215,11 +225,10 @@ func main() {
 					}
 
 					if len(anything) > 0 {
-						fmt.Printf(style("ERROR!! THE INDEX "+anything + "IS OUT OF RANGE IT MUST BE BETWEEN 0 AND %d\n", "\033[1;31m"), len(word)-1)
+						fmt.Printf(style("ERROR!! THE INDEX "+anything+"IS OUT OF RANGE IT MUST BE BETWEEN 0 AND %d\n", "\033[1;31m"), len(word)-1)
 						fmt.Println(style("TRY AGAIN", "\033[1;31m"))
 						fmt.Println()
 						continue
-						
 
 					}
 
@@ -278,6 +287,7 @@ func main() {
 				result = reverseString(word)
 
 			case "5":
+
 				result = countCharacter(word)
 
 			case "6":
