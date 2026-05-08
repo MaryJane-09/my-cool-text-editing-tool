@@ -1,0 +1,3 @@
+HINT: Apple
+HINT: Ball
+HINT: Cat

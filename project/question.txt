@@ -4,6 +4,7 @@ B. Kano
 C. Abuja
 D. Lagos
 C
+5,000
 
 QUESTION: What is the name of your country?
 A. Ghana
@@ -11,6 +12,7 @@ B. Markurdi
 C. Nigeria
 D. Sokoto
 B
+10,000
 
 QUESTION: Which of these is a computer brand?
 A. Channel
@@ -18,4 +20,5 @@ B. Dior
 C. Dell
 D. LA
 A
+15,000
 
