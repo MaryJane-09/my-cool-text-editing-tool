@@ -3,16 +3,19 @@ A. Nasarawa
 B. Kano
 C. Abuja
 D. Lagos
+C
 
 QUESTION: What is the name of your country?
 A. Ghana
 B. Markurdi
 C. Nigeria
 D. Sokoto
+B
 
-QUESTION: Which of these i a computer brand?
+QUESTION: Which of these is a computer brand?
 A. Channel
 B. Dior
 C. Dell
 D. LA
+A
 
