@@ -28,23 +28,37 @@ func Question() {
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Println(strings.Join(maps[i][:5], "\n"))
 
-start:
+	start:
 		fmt.Print("ANSWER: ")
 		answer, _ := reader.ReadString('\n')
-		answer = strings.ToLower(strings.TrimSpace(answer))
+		answer = strings.ToUpper(strings.TrimSpace(answer))
 
-		if answer == "lifeline" {
-			fmt.Println("LIFELINES ARE;\n 50 : 50\n HINTS\n SUGGESTIONS")
+		if answer == "LIFELINE" {
+			fmt.Println()
+			fmt.Print("LIFELINES ARE;\n 50 : 50\n HINTS\n SUGGESTIONS\n")
+			fmt.Println()
+			fmt.Print("OPTION: ")
+
 			lifeline, _ := reader.ReadString('\n')
 			lifeline = strings.ToLower(strings.TrimSpace(lifeline))
 			if lifeline == "hint" {
-				Hints()
+				Hints(i)
+				fmt.Println()
+				goto start
+			}
+			if lifeline == "suggestions" {
+				CreatorsSuggestions(i)
+				fmt.Println()
 				goto start
 			}
 		}
 
 		if answer != maps[i][len(maps[i])-3] {
 			fmt.Println("WRONG ❌")
+			fmt.Printf("THE CORRECT ANSWER IS %v\n", maps[i][len(maps[i])-3])
+
+			fmt.Println()
+
 			break
 		} else {
 			fmt.Println("CORRECT✅")
