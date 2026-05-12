@@ -11,7 +11,7 @@ func Question() {
 	data, err := os.ReadFile("question.txt")
 	if err != nil {
 		fmt.Println(err)
-		return
+		os.Exit(1)
 	}
 
 	maps := make(map[int][]string)
@@ -26,7 +26,7 @@ func Question() {
 	for i := 1; i <= 3; i++ {
 		fmt.Printf("FOR THIS QUESTION, YOUR PRIZE MONEY IS ₦%v\n", maps[i][6])
 		reader := bufio.NewReader(os.Stdin)
-		fmt.Println(strings.Join(maps[i][:5], "\n"))
+		TypeEffectFast(maps[i][:5])
 
 	start:
 		fmt.Print("ANSWER: ")
@@ -35,7 +35,7 @@ func Question() {
 
 		if answer == "LIFELINE" {
 			fmt.Println()
-			fmt.Print("LIFELINES ARE;\n 50 : 50\n HINTS\n SUGGESTIONS\n")
+			fmt.Print("LIFELINES ARE;\n 50:50\n HINTS\n SUGGESTIONS\n")
 			fmt.Println()
 			fmt.Print("OPTION: ")
 

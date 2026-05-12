@@ -33,5 +33,5 @@ func Introduction() {
 		"SO NOW WE WILL RUN THE GAMUT OF QUESTIONS I HOPE TO THE END SO THAT YOU CAN HAVE 20 MILLION NARIA. ALRIGHT LET'S PLAY WHO WANT TO BE A MILLIONAIRE.",
 		"\n",
 	}
-	TypeEffect(words)
+	TypeEffectFast(words)
 }
