@@ -23,6 +23,7 @@ func Question() {
 		count++
 	}
 
+	usedLifeline := ""
 	for i := 1; i <= 3; i++ {
 		fmt.Printf("FOR THIS QUESTION, YOUR PRIZE MONEY IS ₦%v\n", maps[i][6])
 		reader := bufio.NewReader(os.Stdin)
@@ -34,7 +35,6 @@ func Question() {
 		answer, _ := reader.ReadString('\n')
 		answer = strings.ToUpper(strings.TrimSpace(answer))
 
-
 		if answer == "LIFELINE" {
 			fmt.Println()
 			fmt.Print("LIFELINES ARE;\n 1. 50:50\n 2. HINT\n 3. SUGGESTION\n")
@@ -44,21 +44,46 @@ func Question() {
 			lifeline, _ := reader.ReadString('\n')
 			lifeline = strings.ToLower(strings.TrimSpace(lifeline))
 			if lifeline == "hint" || lifeline == "2" {
-				Hints(i)
-				fmt.Println()
-				goto start
+				err := CheckIfLifelineHasBeenUsed(strings.Contains(usedLifeline, "hint"))
+				if err != nil {
+					fmt.Println(err)
+					fmt.Println()
+					goto start
+				} else {
+					Hints(i)
+					usedLifeline += "hint"
+					fmt.Println()
+					goto start
+				}
 			}
 			if lifeline == "suggestion" || lifeline == "3" {
-				CreatorsSuggestions(i)
-				fmt.Println()
-				goto start
+				err := CheckIfLifelineHasBeenUsed(strings.Contains(usedLifeline, "suggestion"))
+				if err != nil {
+					fmt.Println(err)
+					fmt.Println()
+					goto start
+				} else {
+					CreatorsSuggestions(i)
+					usedLifeline += "suggestion"
+					fmt.Println()
+					goto start
+				}
 			}
 			if lifeline == "50:50" || lifeline == "1" {
-				FiftyFifty(maps[i], i)
-				fmt.Println()
-				fmt.Println(strings.Join(maps[i][:1], "\n"))
-				TypeEffectFast(maps[i][1:][:4])
-				goto start
+				err := CheckIfLifelineHasBeenUsed(strings.Contains(usedLifeline, "50:50"))
+				if err != nil {
+					fmt.Println(err)
+					fmt.Println()
+					goto start
+				} else {
+					FiftyFifty(maps[i], i)
+					fmt.Println()
+					fmt.Println(strings.Join(maps[i][:1], "\n"))
+					TypeEffectFast(maps[i][1:][:4])
+					usedLifeline += "50:50"
+					fmt.Println()
+					goto start
+				}
 			}
 
 		}
