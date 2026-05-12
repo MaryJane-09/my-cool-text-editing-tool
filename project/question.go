@@ -34,37 +34,45 @@ func Question() {
 		answer, _ := reader.ReadString('\n')
 		answer = strings.ToUpper(strings.TrimSpace(answer))
 
+
 		if answer == "LIFELINE" {
 			fmt.Println()
-			fmt.Print("LIFELINES ARE;\n 50:50\n HINTS\n SUGGESTIONS\n")
+			fmt.Print("LIFELINES ARE;\n 1. 50:50\n 2. HINT\n 3. SUGGESTION\n")
 			fmt.Println()
 			fmt.Print("OPTION: ")
 
 			lifeline, _ := reader.ReadString('\n')
 			lifeline = strings.ToLower(strings.TrimSpace(lifeline))
-			if lifeline == "hint" {
+			if lifeline == "hint" || lifeline == "2" {
 				Hints(i)
 				fmt.Println()
 				goto start
 			}
-			if lifeline == "suggestions" {
+			if lifeline == "suggestion" || lifeline == "3" {
 				CreatorsSuggestions(i)
 				fmt.Println()
 				goto start
 			}
-		}
+			if lifeline == "50:50" || lifeline == "1" {
+				FiftyFifty(maps[i], i)
+				fmt.Println()
+				fmt.Println(strings.Join(maps[i][:1], "\n"))
+				TypeEffectFast(maps[i][1:][:4])
+				goto start
+			}
 
-		if answer != maps[i][len(maps[i])-3] {
+		}
+		if answer == maps[i][len(maps[i])-3] {
+			fmt.Println("CORRECT✅")
+			fmt.Printf("YOU HAVE WON ₦%v\n", maps[i][6])
+			fmt.Println()
+
+		} else {
 			fmt.Println("WRONG ❌")
 			fmt.Printf("THE CORRECT ANSWER IS %v\n", maps[i][len(maps[i])-3])
 
 			fmt.Println()
-
 			break
-		} else {
-			fmt.Println("CORRECT✅")
-			fmt.Printf("YOU HAVE WON ₦%v\n", maps[i][6])
-			fmt.Println()
 		}
 	}
 }
