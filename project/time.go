@@ -10,9 +10,9 @@ func TypeEffect(word []string) {
 	for _, line := range word {
 		for _, char := range line {
 			fmt.Print(string(char))
-			time.Sleep(60 * time.Millisecond)
+			time.Sleep(100 * time.Millisecond)
 		}
-		time.Sleep(800 * time.Millisecond)
+		time.Sleep(900 * time.Millisecond)
 	}
 }
 
