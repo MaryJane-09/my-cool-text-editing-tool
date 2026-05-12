@@ -24,10 +24,10 @@ func Question() {
 	}
 
 	for i := 1; i <= 3; i++ {
-		TypeEffectFast(fmt.Sprintf("FOR THIS QUESTION, YOUR PRIZE MONEY IS ₦%v\n", maps[i][6]))
+		fmt.Printf("FOR THIS QUESTION, YOUR PRIZE MONEY IS ₦%v\n", maps[i][6])
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Println(strings.Join(maps[i][:1], "\n"))
-		TypeEffectFast(maps[i][1:5])
+		TypeEffectFast(maps[i][1:][:4])
 
 	start:
 		fmt.Print("ANSWER: ")
