@@ -21,7 +21,7 @@ func TypeEffectSlow(word []string) {
 	for _, line := range word {
 		for _, char := range line {
 			fmt.Print(string(char))
-			time.Sleep(200 * time.Millisecond)
+			time.Sleep(400 * time.Millisecond)
 		}
 		fmt.Println()
 		time.Sleep(900 * time.Millisecond)

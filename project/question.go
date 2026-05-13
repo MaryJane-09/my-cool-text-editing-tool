@@ -22,7 +22,7 @@ func Question() {
 		maps[count] = line[i : i+8]
 		count++
 	}
-
+	question := 0
 	reader := bufio.NewReader(os.Stdin)
 	usedLifeline := ""
 	for i := 1; i <= 20; i++ {
@@ -77,11 +77,9 @@ func Question() {
 					goto start
 				} else {
 					FiftyFifty(maps[i], i)
-					fmt.Println()
 					fmt.Println(strings.Join(maps[i][:1], "\n"))
 					TypeEffectFast(maps[i][1:][:4])
 					usedLifeline += "50:50"
-					fmt.Println()
 					goto start
 				}
 			}
@@ -91,23 +89,47 @@ func Question() {
 			fmt.Println("CORRECT✅")
 			fmt.Printf("YOU HAVE WON ₦%v\n", maps[i][6])
 			fmt.Println()
-
+			question++
 		} else {
 			fmt.Println("WRONG ❌")
 			fmt.Printf("THE CORRECT ANSWER IS %v\n", maps[i][len(maps[i])-3])
+
+			if question < 5 {
+				fmt.Println("YOU HAVE NOT ANSWERED ANY GUARANTEED QUESTION THEREFORE YOU CANNOT WIN A CASH PRIZE")
+				fmt.Println("THANK YOU FOR YOUR TIME. WE HOPE TO SEE YOU AGAIN")
+			}
+			if question < 10 {
+				fmt.Println("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦20,000")
+			}
+			if question < 15 {
+				fmt.Println("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦500,000")
+			}
+			if question < 20 {
+				fmt.Println("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦3,000,000")
+			}
 
 			fmt.Println()
 			return
 		}
 	}
-	fmt.Println("CONGARTULATIONS YOU HAVE WON ₦20,000,000")
-	fmt.Println("TO ACCESS YOUR REWARD YOU WILL HAVE TO DROP YOUR BANK DETAILS HERE")
-	fmt.Println("FORMAT; <account number>, <bankname>")
+
+	var words = []string {
+		"CONGARTULATIONS YOU HAVE WON ₦20,000,000",
+		"TO ACCESS YOUR REWARD YOU WILL HAVE TO DROP YOUR BANK DETAILS HERE",
+		"FORMAT; <account number>, <bankname>",
+	}
+	TypeEffectFast(words)
+	fmt.Println("INPUT HERE: ")
 
 	bankDetails, _ := reader. ReadString('\n')
 	bankDetails = strings.TrimSpace(strings.ToLower(bankDetails))
 
-	fmt.Printf("OK WE HAVE GOT %v", bankDetails)
-	fmt.Println("FOR ANY COMPLAINT CONTACT US AT; 07036702434, 09133440339")
+	fmt.Printf("OK WE'VE GOT YOUR DETAILS: %v\n", bankDetails)
+	fmt.Println("FOR ANY COMPLAINT CONTACT US AT; 07036702434 or 09133440339")
 	fmt.Println("THANK YOU FOR YOUR TIME")
+
+	var word = []string {
+		"SEE YOU NEXT TIME ON WHO WANTS TO BE A MILLIONAIRE",
+	}
+	TypeEffectFast(word)
 }

@@ -4,7 +4,7 @@ B. HighText Transfer Protocol
 C. Hyper Transfer Text Process
 D. HyperText Transmission Process
 A
-5,000
+1,000
 
 QUESTION 2: Which company created the Go programming language?
 A. Microsoft
@@ -12,7 +12,7 @@ B. Apple
 C. Google
 D. IBM
 C
-10,000
+2,000
 
 QUESTION 3: Which data structure works on the principle of FIFO?
 A. Stack
@@ -20,7 +20,7 @@ B. Queue
 C. Tree
 D. Graph
 B
-20,000
+5,000
 
 QUESTION 4: In Go, what keyword is used to start a goroutine?
 A. thread
@@ -28,7 +28,7 @@ B. async
 C. go
 D. routine
 C
-30,000
+10,000
 
 QUESTION 5: What is the output type of len() in Go?
 A. string
@@ -36,7 +36,7 @@ B. rune
 C. int
 D. byte
 C
-40,000
+20,000
 
 QUESTION 6: Which Go package is commonly used for formatted I/O?
 A. io
@@ -44,7 +44,7 @@ B. os
 C. fmt
 D. bufio
 C
-50,000
+40,000
 
 QUESTION 7: What does API stand for?
 A. Application Programming Interface
@@ -52,7 +52,7 @@ B. Application Process Integration
 C. Automated Program Interface
 D. Applied Programming Internet
 A
-75,000
+80,000
 
 QUESTION 8: Which protocol is commonly used for secure web communication?
 A. FTP
@@ -60,7 +60,7 @@ B. HTTP
 C. HTTPS
 D. SSH
 C
-100,000
+150,000
 
 QUESTION 9: In Git, which command uploads local commits to a remote repository?
 A. git upload
@@ -68,7 +68,7 @@ B. git commit
 C. git push
 D. git sync
 C
-150,000
+300,000
 
 QUESTION 10: Which SQL command is used to remove a table and all its data?
 A. DELETE
@@ -76,7 +76,7 @@ B. REMOVE
 C. DROP
 D. CLEAR
 C
-200,000
+500,000
 
 QUESTION 11: Which Linux command is used to change file permissions?
 A. chmod
@@ -84,7 +84,7 @@ B. chperm
 C. perm
 D. filemod
 A
-250,000
+750,000
 
 QUESTION 12: In networking, what does DNS do?
 A. Encrypts internet traffic
@@ -92,7 +92,7 @@ B. Converts domain names to IP addresses
 C. Transfers files
 D. Compresses data
 B
-300,000
+1,000,000
 
 QUESTION 13: What is the default value of an uninitialized int variable in Go?
 A. nil
@@ -100,7 +100,7 @@ B. undefined
 C. 0
 D. 1
 C
-350,000
+1,500,000
 
 QUESTION 14: Which of these is NOT a primitive data type in Go?
 A. int
@@ -108,7 +108,7 @@ B. string
 C. bool
 D. list
 D
-400,000
+2,000,000
 
 QUESTION 15: Which keyword is used to define a structure in Go?
 A. class
@@ -116,7 +116,7 @@ B. object
 C. struct
 D. typeclass
 C
-500,000
+3,000,000
 
 QUESTION 16: Which operator is used to declare a short variable in Go?
 A. :=
@@ -124,7 +124,7 @@ B. =
 C. ==
 D. <-
 A
-600,000
+5,000,000
 
 QUESTION 17: Which symbol is used to dereference a pointer in Go?
 A. &
@@ -132,7 +132,7 @@ B. *
 C. %
 D. @
 B
-700,000
+7,000,000
 
 QUESTION 18: What is the time complexity of binary search?
 A. O(n)
@@ -140,7 +140,7 @@ B. O(log n)
 C. O(n²)
 D. O(1)
 B
-800,000
+10,000,000
 
 QUESTION 19: Which sorting algorithm generally has the best average-case performance?
 A. Bubble Sort
@@ -148,7 +148,7 @@ B. Quick Sort
 C. Selection Sort
 D. Insertion Sort
 B
-900,000
+15,000,000
 
 QUESTION 20: What will happen if a nil pointer is dereferenced in Go?
 A. Compilation succeeds silently
@@ -156,5 +156,5 @@ B. The pointer becomes zero
 C. Runtime panic occurs
 D. The program exits safely
 C
-1,000,000
+20,000,000
 
