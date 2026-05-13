@@ -23,10 +23,10 @@ func Question() {
 		count++
 	}
 
+	reader := bufio.NewReader(os.Stdin)
 	usedLifeline := ""
-	for i := 1; i <= 3; i++ {
+	for i := 1; i <= 20; i++ {
 		fmt.Printf("FOR THIS QUESTION, YOUR PRIZE MONEY IS ₦%v\n", maps[i][6])
-		reader := bufio.NewReader(os.Stdin)
 		fmt.Println(strings.Join(maps[i][:1], "\n"))
 		TypeEffectFast(maps[i][1:][:4])
 
@@ -97,7 +97,17 @@ func Question() {
 			fmt.Printf("THE CORRECT ANSWER IS %v\n", maps[i][len(maps[i])-3])
 
 			fmt.Println()
-			break
+			return
 		}
 	}
+	fmt.Println("CONGARTULATIONS YOU HAVE WON ₦20,000,000")
+	fmt.Println("TO ACCESS YOUR REWARD YOU WILL HAVE TO DROP YOUR BANK DETAILS HERE")
+	fmt.Println("FORMAT; <account number>, <bankname>")
+
+	bankDetails, _ := reader. ReadString('\n')
+	bankDetails = strings.TrimSpace(strings.ToLower(bankDetails))
+
+	fmt.Printf("OK WE HAVE GOT %v", bankDetails)
+	fmt.Println("FOR ANY COMPLAINT CONTACT US AT; 07036702434, 09133440339")
+	fmt.Println("THANK YOU FOR YOUR TIME")
 }
