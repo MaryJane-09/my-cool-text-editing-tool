@@ -1,20 +1,20 @@
-HINT: This protocol powers most websites on the internet.
-HINT: Think of the company behind Android and YouTube.
-HINT: FIFO means the first item added leaves first.
-HINT: The keyword is extremely short.
-HINT: len() gives a numeric result.
-HINT: Beginners use this package constantly for printing.
-HINT: APIs allow programs to communicate with each other.
-HINT: One version of this protocol is encrypted.
-HINT: This command sends commits to GitHub.
-HINT: This command permanently destroys a table.
-HINT: Linux permissions control who can read or execute files.
-HINT: Browsers rely on this system to find websites.
-HINT: Go variables are never truly “empty.”
-HINT: One option here is not built into Go.
-HINT: Go avoids traditional classes.
-HINT: This operator both declares and assigns.
-HINT: One symbol gets memory addresses, the other reads values.
-HINT: This search method keeps splitting things into halves.
-HINT: One algorithm here is known for partitioning.
-HINT: Go crashes intentionally to prevent unsafe memory access.
+HINT: Think about arithmetic precedence in programming.
+HINT: Maps return default values when keys are missing.
+HINT: Uninitialized maps cannot be written to directly.
+HINT: Slice length function counts elements only.
+HINT: Dereferencing nil means accessing non-existent memory.
+HINT: Focus on operator precedence (&&, ||).
+HINT: Nil slices behave safely in loops.
+HINT: Multiplication happens before addition.
+HINT: Append usually returns a new underlying array reference.
+HINT: Hash tables are optimized for fast lookup.
+HINT: Unrecovered panic affects entire runtime.
+HINT: Boolean default value is simple logic.
+HINT: UTF-8 characters may take more than one byte.
+HINT: Defer runs after function ends.
+HINT: & gives memory address.
+HINT: Closing already closed channels is unsafe.
+HINT: Integer division truncates decimals.
+HINT: Recover only works inside deferred functions.
+HINT: Slices point to underlying arrays.
+HINT: Main exiting stops all goroutines.
