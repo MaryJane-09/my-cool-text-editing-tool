@@ -98,7 +98,7 @@ func Question() {
 			time.Sleep(2 * time.Second)
 			fmt.Printf(Color("%v\n", "\033[1m"), maps[i][len(maps[i])-3])
 
-			fmt.Println(Color("CORRECT✅", "\033[1;33m"))
+			fmt.Println(Color("YOU ARE CORRECT✅", "\033[1;33m"))
 			fmt.Printf(Color("YOU HAVE WON ₦%v\n", "\033[1;32m"), maps[i][6])
 			fmt.Println()
 			question++
@@ -109,25 +109,31 @@ func Question() {
 			})
 			time.Sleep(4 * time.Second)
 
-			fmt.Println(Color("WRONG ❌", "\033[1;31m"))
-			fmt.Printf(Color("THE CORRECT ANSWER IS %v\n", "\033[1m"), maps[i][len(maps[i])-3])
+
+			TypeEffectFast([]string{
+				"THE CORRECT ANSWER IS...",
+			})
+			time.Sleep(2 * time.Second)
+			fmt.Printf(Color("%v\n", "\033[1m"), maps[i][len(maps[i])-3])
+
+
+			fmt.Println(Color("YOU FAILED ❌", "\033[1;31m"))
 
 			if question < 5 {
 				fmt.Println(Color("YOU HAVE NOT ANSWERED ANY GUARANTEED QUESTION THEREFORE YOU CANNOT WIN A CASH PRIZE", "\033[1;32m"))
 				fmt.Println(Color("THANK YOU FOR YOUR TIME. WE HOPE TO SEE YOU AGAIN", "\033[1;32m"))
-				ClearScreen()
 			}
 			if question < 10 && question >= 5 {
 				fmt.Println(Color("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦20,000", "\033[1;32m"))
-				ClearScreen()
+				AccessingPrize()
 			}
 			if question < 15 && question >= 10 {
 				fmt.Println(Color("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦500,000", "\033[1;32m"))
-				ClearScreen()
+				AccessingPrize()
 			}
 			if question < 20 && question >= 15 {
 				fmt.Println(Color("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦3,000,000", "\033[1;32m"))
-				ClearScreen()
+				AccessingPrize()
 			}
 
 			fmt.Println()
@@ -137,21 +143,7 @@ func Question() {
 
 	var words = []string{
 		Color("CONGRATULATIONS YOU HAVE WON ₦20,000,000", "\033[1;33m"),
-		Color("TO ACCESS YOUR REWARD YOU WILL HAVE TO DROP YOUR BANK DETAILS HERE", "\033[1;33m"),
-		Color("FORMAT; <account number>, <bankname>", "\033[1;33m"),
 	}
 	TypeEffectFast(words)
-	fmt.Println(Color("INPUT HERE: ", "\033[1;30m"))
-
-	bankDetails, _ := reader.ReadString('\n')
-	bankDetails = strings.TrimSpace(strings.ToLower(bankDetails))
-
-	fmt.Printf(Color("OK WE'VE GOT YOUR DETAILS: %v\n", "\033[1;32m"), bankDetails)
-	fmt.Println(Color("FOR ANY COMPLAINT CONTACT US AT; 07036702434 or 09133440339", "\033[1;32m"))
-	fmt.Println(Color("THANK YOU FOR YOUR TIME", "\033[1;32m"))
-
-	var word = []string{
-		Color("SEE YOU NEXT TIME ON WHO WANTS TO BE A MILLIONAIRE", "\033[1;42m"),
-	}
-	TypeEffectFast(word)
+	AccessingPrize()
 }
