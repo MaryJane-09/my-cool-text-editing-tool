@@ -26,20 +26,20 @@ func Question() {
 	reader := bufio.NewReader(os.Stdin)
 	usedLifeline := ""
 	for i := 1; i <= 20; i++ {
-		fmt.Printf("FOR THIS QUESTION, YOUR PRIZE MONEY IS ₦%v\n", maps[i][6])
-		fmt.Println(strings.Join(maps[i][:1], "\n"))
+		fmt.Printf(Color("FOR THIS QUESTION, YOUR PRIZE MONEY IS ₦%v\n", "\033[1;36m"), maps[i][6])
+		fmt.Println(Color(strings.Join(maps[i][:1], "\033[1;37m"), "\n"))
 		TypeEffectFast(maps[i][1:][:4])
 
 	start:
-		fmt.Print("ANSWER: ")
+		fmt.Print(Color("ANSWER: ", "\033[1;30m"))
 		answer, _ := reader.ReadString('\n')
 		answer = strings.ToUpper(strings.TrimSpace(answer))
 
 		if answer == "LIFELINE" {
 			fmt.Println()
-			fmt.Print("LIFELINES ARE;\n 1. 50:50\n 2. HINT\n 3. SUGGESTION\n")
+			fmt.Print(Color("LIFELINES ARE;\n 1. 50:50\n 2. HINT\n 3. SUGGESTION\n", "\033[1;35m"))
 			fmt.Println()
-			fmt.Print("OPTION: ")
+			fmt.Print(Color("OPTION: ", "\033[1;30m"))
 
 			lifeline, _ := reader.ReadString('\n')
 			lifeline = strings.ToLower(strings.TrimSpace(lifeline))
@@ -86,26 +86,26 @@ func Question() {
 
 		}
 		if answer == maps[i][len(maps[i])-3] {
-			fmt.Println("CORRECT✅")
-			fmt.Printf("YOU HAVE WON ₦%v\n", maps[i][6])
+			fmt.Println(Color("CORRECT✅", "\033[1;33m"))
+			fmt.Printf(Color("YOU HAVE WON ₦%v\n", "\033[1;32m"), maps[i][6])
 			fmt.Println()
 			question++
 		} else {
-			fmt.Println("WRONG ❌")
-			fmt.Printf("THE CORRECT ANSWER IS %v\n", maps[i][len(maps[i])-3])
+			fmt.Println(Color("WRONG ❌", "\033[1;31m"))
+			fmt.Printf(Color("THE CORRECT ANSWER IS %v\n", "\033[1m"), maps[i][len(maps[i])-3])
 
 			if question < 5 {
-				fmt.Println("YOU HAVE NOT ANSWERED ANY GUARANTEED QUESTION THEREFORE YOU CANNOT WIN A CASH PRIZE")
-				fmt.Println("THANK YOU FOR YOUR TIME. WE HOPE TO SEE YOU AGAIN")
+				fmt.Println(Color("YOU HAVE NOT ANSWERED ANY GUARANTEED QUESTION THEREFORE YOU CANNOT WIN A CASH PRIZE", "\033[32m"))
+				fmt.Println(Color("THANK YOU FOR YOUR TIME. WE HOPE TO SEE YOU AGAIN", "\033[32m"))
 			}
-			if question < 10 {
-				fmt.Println("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦20,000")
+			if question < 10 && question >= 5 {
+				fmt.Println(Color("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦20,000", "\033[32m"))
 			}
-			if question < 15 {
-				fmt.Println("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦500,000")
+			if question < 15 && question >= 10 {
+				fmt.Println(Color("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦500,000", "\033[32m"))
 			}
-			if question < 20 {
-				fmt.Println("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦3,000,000")
+			if question < 20 && question >= 15 {
+				fmt.Println(Color("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦3,000,000", "\033[32m"))
 			}
 
 			fmt.Println()
@@ -113,23 +113,23 @@ func Question() {
 		}
 	}
 
-	var words = []string {
-		"CONGARTULATIONS YOU HAVE WON ₦20,000,000",
-		"TO ACCESS YOUR REWARD YOU WILL HAVE TO DROP YOUR BANK DETAILS HERE",
-		"FORMAT; <account number>, <bankname>",
+	var words = []string{
+		Color("CONGARTULATIONS YOU HAVE WON ₦20,000,000", "\033[1;33m"),
+		Color("TO ACCESS YOUR REWARD YOU WILL HAVE TO DROP YOUR BANK DETAILS HERE", "\033[1;33m"),
+		Color("FORMAT; <account number>, <bankname>", "\033[1;33m"),
 	}
 	TypeEffectFast(words)
-	fmt.Println("INPUT HERE: ")
+	fmt.Println(Color("INPUT HERE: ", "\033[1;30m"))
 
-	bankDetails, _ := reader. ReadString('\n')
+	bankDetails, _ := reader.ReadString('\n')
 	bankDetails = strings.TrimSpace(strings.ToLower(bankDetails))
 
-	fmt.Printf("OK WE'VE GOT YOUR DETAILS: %v\n", bankDetails)
-	fmt.Println("FOR ANY COMPLAINT CONTACT US AT; 07036702434 or 09133440339")
-	fmt.Println("THANK YOU FOR YOUR TIME")
+	fmt.Printf(Color("OK WE'VE GOT YOUR DETAILS: %v\n", "\033[1;32m"), bankDetails)
+	fmt.Println(Color("FOR ANY COMPLAINT CONTACT US AT; 07036702434 or 09133440339", "\033[1;32m"))
+	fmt.Println(Color("THANK YOU FOR YOUR TIME", "\033[1;32m"))
 
-	var word = []string {
-		"SEE YOU NEXT TIME ON WHO WANTS TO BE A MILLIONAIRE",
+	var word = []string{
+		Color("SEE YOU NEXT TIME ON WHO WANTS TO BE A MILLIONAIRE", "\033[1;42m"),
 	}
 	TypeEffectFast(word)
 }
