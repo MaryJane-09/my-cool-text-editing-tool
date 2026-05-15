@@ -5,42 +5,73 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 )
 
 func Introduction() {
+	ClearScreen()
 
 	fmt.Println("PLEASE INPUT YOUR NAME TO SIGN UP")
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Print("FULLNAME: ")
 	name, _ := reader.ReadString('\n')
-	name = strings.TrimSpace(strings.ToLower(name))
+	name = strings.TrimSpace(name)
 
 	fmt.Println()
 	fmt.Printf("HELLO, %v\n\n", Capitalize(name))
+	time.Sleep(1 * time.Second)
 
-	var words = []string{
-		Color("WELCOME TO WHO WANTS TO BE A MILLIONAIRE: LEEF CENTER EDITION SERIES 1", "\033[1;36m"),
+	lines := []string{
+		Color("WELCOME TO RUNTIME RICHES - LEEF CENTER EDITION SERIES 1", "\033[1;36m"),
+		Color("...", "\033[1;36m"),
+		Color("THIS IS NOT JUST A QUIZ GAME.", "\033[1;36m"),
+		Color("IT IS A TEST OF KNOWLEDGE, MEMORY, AND COURAGE.", "\033[1;36m"),
 		"",
-		Color("YOU HAVE A CHANCE OF WINNING ₦20,000,000 IN ONE DAY", "\033[1;32m"),
+		Color("OBJECTIVE:", "\033[1;36m"),
+		Color("ANSWER 20 QUESTIONS CORRECTLY AND WIN ₦20,000,000", "\033[1;36m"),
 		"",
-		Color("BUT YOU MUST ANSWER 20 QUESTIONS CORRECTLY TO WIN THE GRAND PRIZE", "\033[1;33m"),
+		Color("BUT BE CAREFUL...", "\033[1;36m"),
+		Color("ONE WRONG ANSWER CAN END YOUR JOURNEY.", "\033[1;36m"),
 		"",
-		Color("GUARANTEED LEVELS ARE QUESTION 5, 10 AND 15", "\033[1;35m"),
+		Color("GUARANTEED LEVELS:", "\033[1;36m"),
+		Color("QUESTION 5  → SAFE POINT", "\033[1;36m"),
+		Color("QUESTION 10 → HIGHER SAFE POINT", "\033[1;36m"),
+		Color("QUESTION 15 → FINAL SAFE POINT", "\033[1;36m"),
 		"",
-		Color("IF YOU FAIL, YOU FALL BACK PRIZE OF THE LAST GUARANTEED LEVEL", "\033[1;31m"),
+		Color("LIFELINES AVAILABLE:", "\033[1;36m"),
+		Color("1. 50:50 - REMOVE TWO WRONG OPTIONS", "\033[1;36m"),
+		Color("2. HINT - SMALL CLUE", "\033[1;36m"),
+		Color("3. SUGGESTION - GUIDED HELP", "\033[1;36m"),
 		"",
-		Color("YOU HAVE 3 LIFELINES:", "\033[1;36m"),
-		Color("1. 50:50 - Removes two wrong answers", "\033[1;37m"),
-		Color("2. HINT - Gives a clue", "\033[1;37m"),
-		Color("3. SUGGESTION - Gives possible guidance", "\033[1;37m"),
-		"",
-		Color("ARE YOU READY? LET'S BEGIN THE GAME...", "\033[1;33m"),
+		Color("ONCE USED... THEY CANNOT BE USED AGAIN.", "\033[1;36m"),
+		Color("...", "\033[1;36m"),
+		Color("ARE YOU READY?", "\033[1;36m"),
 	}
 
-	TypeEffectFast(words)
+	TypeEffectFast(lines)
+
+	time.Sleep(2 * time.Second)
+
+	TypeEffectFast([]string{
+		Color("STARTING GAME IN...", "\033[1;36m"),
+	})
+
+	time.Sleep(1 * time.Second)
+	fmt.Println(Color("3...", "\033[1;36m"))
+	time.Sleep(1 * time.Second)
+	fmt.Println(Color("2...", "\033[1;36m"))
+	time.Sleep(1 * time.Second)
+	fmt.Println(Color("1...", "\033[1;36m"))
+
+	time.Sleep(1 * time.Second)
 
 	fmt.Println()
-	fmt.Print(Color("PRESS ENTER TO START...", "\033[1;35m"))
+	TypeEffectFast([]string{
+		Color("LET THE GAME BEGIN...", "\033[1;36m"),
+	})
+
+	time.Sleep(1 * time.Second)
+	fmt.Print(Color("PRESS ENTER TO CONTINUE...", "\033[1;36m"))
 	reader.ReadString('\n')
 }
