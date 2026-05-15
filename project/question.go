@@ -29,15 +29,19 @@ func Question() {
 
 	for i := 1; i <= 20; i++ {
 		ClearScreen()
-		fmt.Println("=================================")
-		fmt.Printf("     QUESTION %v OF 20\n", question+1)
-		fmt.Println("=================================")
+		fmt.Println(Color("          ====================================================================", "\033[1;34m"))
+		fmt.Println(Color("                                    RUNTIME RICHES", "\033[1;34m"))
+		fmt.Println(Color("          ====================================================================", "\033[1;34m"))
+		fmt.Println()
+		fmt.Println(Color("---------------------------------", "\033[1;37m"))
+		fmt.Printf(Color("        QUESTION %v OF 20\n", "\033[1;37m"), question+1)
+		fmt.Println(Color("---------------------------------", "\033[1;37m"))
 		fmt.Printf(Color("FOR THIS QUESTION, YOUR PRIZE MONEY IS ₦%v\n", "\033[1;36m"), maps[i][6])
-		fmt.Println(maps[i][0])
+		fmt.Println(Color(maps[i][0], "\033[1;37m"))
 		TypeEffectFast(maps[i][1:5])
 
 	start:
-		fmt.Print(Color("ANSWER: ", "\033[1;30m"))
+		fmt.Print(Color(" ANSWER: ", "\033[1;36;4m"))
 		answer, _ := reader.ReadString('\n')
 		answer = strings.ToUpper(strings.TrimSpace(answer))
 
@@ -93,13 +97,13 @@ func Question() {
 		}
 		if answer == maps[i][len(maps[i])-3] {
 			TypeEffectFast([]string{
-				"CHECKING ANSWER...",
+				" ",
+				Color("CHECKING ANSWER...", "\033[1;33m"),
 			})
 			time.Sleep(2 * time.Second)
 
 			TypeEffectFast([]string{
-				"THE CORRECT ANSWER IS...",
-			})
+				Color("THE CORRECT ANSWER IS...", "\033[1;33m")})
 			time.Sleep(2 * time.Second)
 			fmt.Printf(Color("%v\n", "\033[1m"), maps[i][len(maps[i])-3])
 
@@ -107,23 +111,23 @@ func Question() {
 			fmt.Printf(Color("YOU HAVE WON ₦%v\n", "\033[1;32m"), maps[i][6])
 			fmt.Println()
 			question++
+			time.Sleep(3 * time.Second)
 		} else {
 			TypeEffectFast([]string{
-				"CHECKING ANSWER...",
-			})
+				" ",
+				Color("CHECKING ANSWER...", "\033[1;33m")})
 			time.Sleep(4 * time.Second)
 
 			TypeEffectFast([]string{
-				"THE CORRECT ANSWER IS...",
-			})
+				Color("THE CORRECT ANSWER IS...", "\033[1;33m")})
 			time.Sleep(2 * time.Second)
 			fmt.Printf(Color("%v\n", "\033[1m"), maps[i][len(maps[i])-3])
 
 			fmt.Println(Color("YOU FAILED ❌", "\033[1;31m"))
 
 			if question < 5 {
-				fmt.Println(Color("YOU HAVE NOT ANSWERED ANY GUARANTEED QUESTION THEREFORE YOU CANNOT WIN A CASH PRIZE", "\033[1;32m"))
-				fmt.Println(Color("THANK YOU FOR YOUR TIME. WE HOPE TO SEE YOU AGAIN", "\033[1;32m"))
+				fmt.Println(Color("YOU HAVE NOT ANSWERED ANY GUARANTEED QUESTION THEREFORE YOU CANNOT WIN A CASH PRIZE", "\033[1;33m"))
+				fmt.Println(Color("THANK YOU FOR YOUR TIME. WE HOPE TO SEE YOU AGAIN", "\033[1;33m"))
 			}
 			if question < 10 && question >= 5 {
 				fmt.Println(Color("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦20,000", "\033[1;32m"))
