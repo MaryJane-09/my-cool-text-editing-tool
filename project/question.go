@@ -26,9 +26,14 @@ func Question() {
 	question := 0
 	reader := bufio.NewReader(os.Stdin)
 	usedLifeline := ""
+
 	for i := 1; i <= 20; i++ {
+		ClearScreen()
+		fmt.Println("=================================")
+		fmt.Printf("     QUESTION %v OF 20\n", question+1)
+		fmt.Println("=================================")
 		fmt.Printf(Color("FOR THIS QUESTION, YOUR PRIZE MONEY IS ₦%v\n", "\033[1;36m"), maps[i][6])
-		fmt.Println(maps[i][:1])
+		fmt.Println(maps[i][0])
 		TypeEffectFast(maps[i][1:5])
 
 	start:
@@ -98,24 +103,21 @@ func Question() {
 			time.Sleep(2 * time.Second)
 			fmt.Printf(Color("%v\n", "\033[1m"), maps[i][len(maps[i])-3])
 
-			fmt.Println(Color("YOU ARE CORRECT✅", "\033[1;33m"))
+			fmt.Println(Color("YOU ARE CORRECT✅", "\033[1;32m"))
 			fmt.Printf(Color("YOU HAVE WON ₦%v\n", "\033[1;32m"), maps[i][6])
 			fmt.Println()
 			question++
-			ClearScreen()
 		} else {
 			TypeEffectFast([]string{
 				"CHECKING ANSWER...",
 			})
 			time.Sleep(4 * time.Second)
 
-
 			TypeEffectFast([]string{
 				"THE CORRECT ANSWER IS...",
 			})
 			time.Sleep(2 * time.Second)
 			fmt.Printf(Color("%v\n", "\033[1m"), maps[i][len(maps[i])-3])
-
 
 			fmt.Println(Color("YOU FAILED ❌", "\033[1;31m"))
 
