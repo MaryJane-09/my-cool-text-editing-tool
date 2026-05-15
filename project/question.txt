@@ -1,6 +1,4 @@
-QUESTION 1: What will this print?
-x := 10
-fmt.Println(x / 4)
+QUESTION 1: What will this print? x := 10 fmt.Println(x / 4)
 A. 2.5
 B. 2
 C. 3
@@ -16,9 +14,7 @@ D. Returns nil
 B
 2,000
 
-QUESTION 3: What will happen here?
-var m map[string]int
-m["a"] = 1
+QUESTION 3: What will happen here? var m map[string]int; m["a"] = 1
 A. Works fine
 B. Panic
 C. Compile error
@@ -26,8 +22,7 @@ D. Returns nil
 B
 5,000
 
-QUESTION 4: What is the output?
-fmt.Println(len([]int{}))
+QUESTION 4: What is the output?  fmt.Println(len([]int{}))
 A. 0
 B. nil
 C. 1
@@ -43,8 +38,7 @@ D. Safe execution
 B
 20,000
 
-QUESTION 6: What is the result of this expression?
-fmt.Println(true && false || true)
+QUESTION 6: What is the result of this expression? fmt.Println(true && false || true)
 A. true
 B. false
 C. error
@@ -60,8 +54,7 @@ D. Returns nil
 C
 80,000
 
-QUESTION 8: What is printed?
-fmt.Println(3 + 2*2)
+QUESTION 8: What is printed? fmt.Println(3 + 2*2)
 A. 10
 B. 7
 C. 8
@@ -101,8 +94,7 @@ D. undefined
 B
 1,000,000
 
-QUESTION 13: What is the output?
-fmt.Println(len("Go🚀"))
+QUESTION 13: What is the output? fmt.Println(len("Go🚀"))
 A. 3
 B. 4
 C. 5
@@ -118,9 +110,7 @@ D. Runs in goroutine
 B
 2,000,000
 
-QUESTION 15: What is printed?
-x := 5
-fmt.Println(&x)
+QUESTION 15: What is printed? x := 5 fmt.Println(&x)
 A. 5
 B. memory address
 C. nil
@@ -136,8 +126,7 @@ D. Reopens channel
 B
 5,000,000
 
-QUESTION 17: What is the output?
-fmt.Println(10 / 3)
+QUESTION 17: What is the output? fmt.Println(10 / 3)
 A. 3.33
 B. 3
 C. 4
@@ -168,3 +157,4 @@ C. Program exits immediately
 D. Deadlock occurs
 C
 20,000,000
+

@@ -54,7 +54,7 @@ func Introduction() {
 	time.Sleep(2 * time.Second)
 
 	TypeEffectFast([]string{
-		Color("STARTING GAME IN...", "\033[1;36m"),
+		Color("STARTING GAME IN...", "\033[1;33m"),
 	})
 
 	time.Sleep(1 * time.Second)
@@ -68,7 +68,7 @@ func Introduction() {
 
 	fmt.Println()
 	TypeEffectFast([]string{
-		Color("LET THE GAME BEGIN...", "\033[1;36m"),
+		Color("LET THE GAME BEGIN...", "\033[1;33m"),
 	})
 
 	time.Sleep(1 * time.Second)

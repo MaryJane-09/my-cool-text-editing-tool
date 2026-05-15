@@ -27,7 +27,7 @@ func AccessingPrize() {
 
 	var word = []string{
 		"\n",
-		Color("SEE YOU NEXT TIME ON WHO WANTS TO BE A MILLIONAIRE", "\033[1;96m"),
+		Color("SEE YOU NEXT TIME ON RUNTIME RICHES - LEEF CENTER EDITION SERIES 1", "\033[1;96m"),
 		"\n",
 	}
 	TypeEffectFast(word)
