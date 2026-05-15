@@ -1,12 +1,11 @@
 package main
 
-import "fmt"
-
+import "errors"
 
 func CheckIfLifelineHasBeenUsed(input bool) error {
 	if input {
-		return fmt.Errorf("THIS LIFELINE HAS ALREADY BEEN USED\nTRY AGAIN")
-		
+		return errors.New(Color("THIS LIFELINE HAS ALREADY BEEN USED\nPICK ANOTHER", "\033[1;31m"))
+
 	}
-	return  nil
+	return nil
 }

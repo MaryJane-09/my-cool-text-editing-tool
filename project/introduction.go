@@ -58,11 +58,11 @@ func Introduction() {
 	})
 
 	time.Sleep(1 * time.Second)
-	fmt.Println(Color("3...", "\033[1;36m"))
+	fmt.Println(Color("3...", "\033[1;33m"))
 	time.Sleep(1 * time.Second)
-	fmt.Println(Color("2...", "\033[1;36m"))
+	fmt.Println(Color("2...", "\033[1;33m"))
 	time.Sleep(1 * time.Second)
-	fmt.Println(Color("1...", "\033[1;36m"))
+	fmt.Println(Color("1...", "\033[1;33m"))
 
 	time.Sleep(1 * time.Second)
 

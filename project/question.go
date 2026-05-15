@@ -38,7 +38,10 @@ func Question() {
 		fmt.Println(Color("---------------------------------", "\033[1;37m"))
 		fmt.Printf(Color("FOR THIS QUESTION, YOUR PRIZE MONEY IS ₦%v\n", "\033[1;36m"), maps[i][6])
 		fmt.Println(Color(maps[i][0], "\033[1;37m"))
-		TypeEffectFast(maps[i][1:5])
+		TypeEffectFast(maps[i][1:2])
+		TypeEffectFast(maps[i][2:4])
+		TypeEffectFast(maps[i][4:5])
+
 
 	start:
 		fmt.Print(Color(" ANSWER: ", "\033[1;36;4m"))
@@ -49,6 +52,7 @@ func Question() {
 			fmt.Println()
 			fmt.Print(Color("LIFELINES ARE;\n 1. 50:50\n 2. HINT\n 3. SUGGESTION\n", "\033[1;35m"))
 			fmt.Println()
+		star:
 			fmt.Print(Color("OPTION: ", "\033[1;30m"))
 
 			lifeline, _ := reader.ReadString('\n')
@@ -58,7 +62,7 @@ func Question() {
 				if err != nil {
 					fmt.Println(err)
 					fmt.Println()
-					goto start
+					goto star
 				} else {
 					Hints(i)
 					usedLifeline += "hint"
@@ -107,7 +111,7 @@ func Question() {
 			time.Sleep(2 * time.Second)
 			fmt.Printf(Color("%v\n", "\033[1m"), maps[i][len(maps[i])-3])
 
-			fmt.Println(Color("YOU ARE CORRECT✅", "\033[1;32m"))
+			fmt.Println(Color("YOU PASSED✅", "\033[1;32m"))
 			fmt.Printf(Color("YOU HAVE WON ₦%v\n", "\033[1;32m"), maps[i][6])
 			fmt.Println()
 			question++

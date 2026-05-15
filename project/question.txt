@@ -96,7 +96,7 @@ B
 
 QUESTION 13: What is the output? fmt.Println(len("Go🚀"))
 A. 3
-B. 4
+B. 6
 C. 5
 D. depends on encoding
 B
