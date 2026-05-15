@@ -218,14 +218,19 @@ func main() {
 
 					anything := ""
 
-					for i := range indices {
-						if indices[i] < 0 || indices[i] >= len(word)-1 {
+					for i := 0; i < len(indices)-1; i++ {
+						if indices[i] < 0 || indices[i] >= len(word) {
 							anything += strconv.Itoa(indices[i]) + ", "
+							// if i != len(indices)-1 {
+							// 	anything += ", "
+							// }else if i >= len(indices)-1 {
+							// 	anything += "and "
+							// }
 						}
 					}
-
+						anything += "and " + strconv.Itoa(indices[len(indices)-1])
 					if len(anything) > 0 {
-						fmt.Printf(style("ERROR!! THE INDEX "+anything+"IS OUT OF RANGE IT MUST BE BETWEEN 0 AND %d\n", "\033[1;31m"), len(word)-1)
+						fmt.Printf(style("ERROR!! THE INDEX "+anything+" IS OUT OF RANGE IT MUST BE BETWEEN 0 AND %d\n", "\033[1;31m"), len(word)-1)
 						fmt.Println(style("TRY AGAIN", "\033[1;31m"))
 						fmt.Println()
 						continue
@@ -301,8 +306,8 @@ func main() {
 				fmt.Println(" ")
 				continue
 			}
-
 			break
+
 		}
 
 		fmt.Println(" ")
