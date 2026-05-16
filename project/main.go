@@ -1,6 +1,7 @@
 package main
 
 func main() {
-	//Introduction()
+	Introduction()
 	Question()
+	AccessingPrize()
 }

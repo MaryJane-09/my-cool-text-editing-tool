@@ -10,6 +10,7 @@ import (
 func AccessingPrize() {
 
 	reader := bufio.NewReader(os.Stdin)
+	ClearScreen()
 	var words = []string{
 		Color("TO ACCESS YOUR REWARD YOU WILL HAVE TO DROP YOUR BANK DETAILS HERE", "\033[1;33m"),
 		Color("FORMAT; <account number> <bankname>", "\033[1;33m"),
@@ -28,15 +29,17 @@ input:
 		goto input
 	}
 
-	for i := 0; i < len(details); i++ {
-		if details[i][:1] < "0" || details[i][:1] > "9" {
-			fmt.Println(Color("YOUR BANK NUMBER SHOULD CONTAIN JUST NUMBERS", "\033[1;31m"))
+	for _, char := range details[0] {
+		if char < '0' || char > '9' {
+			fmt.Println(Color("YOUR ACCOUNT NUMBER SHOULD CONTAIN JUST NUMBERS", "\033[1;31m"))
 			fmt.Println(Color("TRY AGAIN", "\033[1;31m"))
 			fmt.Println()
 			goto input
 		}
+	}
 
-		if details[i][1:] < "A" || details[i][1:] > "Z" && details[i][1:] < "a" || details[i][1:] > "z" {
+	for _, char := range details[1] {
+		if (char < 'a' || char > 'z') && (char < 'A' || char > 'Z') {
 			fmt.Println(Color("YOUR BANK NAME SHOULD CONTAIN JUST LETTERS", "\033[1;31m"))
 			fmt.Println(Color("TRY AGAIN", "\033[1;31m"))
 			fmt.Println()
@@ -50,7 +53,6 @@ input:
 	fmt.Println()
 
 	var word = []string{
-		"\n",
 		Color("SEE YOU NEXT TIME ON RUNTIME RICHES - LEEF CENTER EDITION SERIES 1", "\033[1;96m"),
 		"\n",
 	}
