@@ -51,18 +51,30 @@ func Question() {
 		answer, _ := reader.ReadString('\n')
 		answer = strings.ToUpper(strings.TrimSpace(answer))
 
-		if answer == "WALKAWAY" {
+		if answer == "HELP" {
+			AskForHelp()
+			goto start
+		}
+
+		if answer == "WALKAWAY" && question > 0 {
 			TypeEffectFast([]string{
-				fmt.Sprintf(Color("YOU ARE ABOUT TO WALK AWAY WITH YOUR CURRENT PRIZE MONEY ₦%v", "\033[1;32m"), maps[i][6]),
+				"",
+				fmt.Sprintf(Color("YOU ARE ABOUT TO WALK AWAY WITH YOUR CURRENT PRIZE MONEY ₦%v", "\033[1;32m"), maps[i-1][6]),
 				"",
 			})
 			fmt.Print(Color("PRESS ENTER TO CONTINUE...", "\033[1;32m"))
 			reader.ReadString('\n')
 			AccessingPrize()
-		}
-		if answer == "HELP" {
-			AskForHelp()
-			goto start
+		} else {
+			TypeEffectFast([]string{
+				Color("YOU HAVE NO CURRENT PRIZE THEREFORE YOU ARE WALKING AWAY EMPTY", "\033[1;31m"),
+				Color("DO YOU STILL WANT TO PROCEED?", "\033[1;31m"),
+				Color("IF YES?", "\033[31m"),
+				Color("PRESS ENTER TO CONTINUE...", "\033[1;33m"),
+				"",
+			})
+			reader.ReadString('\n')
+			return
 		}
 
 		if answer == "LIFELINE" {
@@ -73,7 +85,7 @@ func Question() {
 
 				TypeEffectFast([]string{
 					Color("YOU ARE OUT OF LIFELINES", "\033[1;31m"),
-					Color("PROCEED TO ANSWER THE QUESTION BY YOURSELF CHOOSE WALKAWAY", "\033[31"),
+					Color("PROCEED TO ANSWER THE QUESTION BY YOURSELF CHOOSE WALKAWAY", "\033[31m"),
 					"",
 				})
 
