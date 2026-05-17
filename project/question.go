@@ -51,6 +51,20 @@ func Question() {
 		answer, _ := reader.ReadString('\n')
 		answer = strings.ToUpper(strings.TrimSpace(answer))
 
+		if answer == "WALKAWAY" {
+			TypeEffectFast([]string{
+				fmt.Sprintf(Color("YOU ARE ABOUT TO WALK AWAY WITH YOUR CURRENT PRIZE MONEY ₦%v", "\033[1;32m"), maps[i][6]),
+				"",
+			})
+			fmt.Print(Color("PRESS ENTER TO CONTINUE...", "\033[1;32m"))
+			reader.ReadString('\n')
+			AccessingPrize()
+		}
+		if answer == "HELP" {
+			AskForHelp()
+			goto start
+		}
+
 		if answer == "LIFELINE" {
 			fmt.Println()
 			if (strings.Contains(usedLifeline, "50:50") || strings.Contains(usedLifeline, "1")) &&
@@ -69,16 +83,16 @@ func Question() {
 			fmt.Print(Color("LIFELINES ARE;\n 1. 50:50\n 2. HINT\n 3. SUGGESTION\n", "\033[1;35m"))
 			fmt.Println()
 		star:
-			fmt.Print(Color("OPTION: ", "\033[1;30m"))
+			fmt.Print(Color("OPTION: ", "\033[1;36m"))
 
 			lifeline, _ := reader.ReadString('\n')
 			lifeline = strings.ToLower(strings.TrimSpace(lifeline))
 			if lifeline == "walkaway" {
 				TypeEffectFast([]string{
-					fmt.Sprintf(Color("YOU ARE ABOUT TO WALK AWAY WITH YOUR CURRENT PRIZE MONEY ₦%v", "\033[1;32m"), maps[i][6]),
 					"",
+					fmt.Sprintf(Color("YOU ARE ABOUT TO WALK AWAY WITH YOUR CURRENT PRIZE MONEY ₦%v", "\033[1;33m"), maps[i][6]),
 				})
-				fmt.Print(Color("PRESS ENTER TO CONTINUE...", "\033[1;32m"))
+				fmt.Print(Color("PRESS ENTER TO CONTINUE...", "\033[1;33m"))
 				reader.ReadString('\n')
 				AccessingPrize()
 			}
@@ -126,7 +140,7 @@ func Question() {
 					goto start
 				}
 			}
-		} 
+		}
 		// else {
 		// 	TypeEffectFast([]string{
 		// 		Color("NOT AN OPTION", "\033[1;31m"),
@@ -136,19 +150,7 @@ func Question() {
 		// 	goto start
 
 		// }
-		if answer == "walkaway" {
-			TypeEffectFast([]string{
-				fmt.Sprintf(Color("YOU ARE ABOUT TO WALK AWAY WITH YOUR CURRENT PRIZE MONEY ₦%v", "\033[1;32m"), maps[i][6]),
-				"",
-			})
-			fmt.Print(Color("PRESS ENTER TO CONTINUE...", "\033[1;32m"))
-			reader.ReadString('\n')
-			AccessingPrize()
-		}
-		if answer == "help" {
-			AskForHelp()
-			goto start
-		}
+
 		if answer == maps[i][len(maps[i])-3] {
 			TypeEffectFast([]string{
 				" ",
