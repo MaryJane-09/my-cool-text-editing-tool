@@ -14,7 +14,7 @@ D. Returns nil
 B
 2,000
 
-QUESTION 3: What will happen here? var m map[string]int; m["a"] = 1
+QUESTION 3: What will happen here? var m map[string]int m["a"] = 1
 A. Works fine
 B. Panic
 C. Compile error

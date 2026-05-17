@@ -34,6 +34,8 @@ func Introduction() {
 		Color("BUT BE CAREFUL...", "\033[1;36m"),
 		Color("ONE WRONG ANSWER CAN END YOUR JOURNEY.", "\033[1;36m"),
 		"",
+		Color("YOU ALSO HAVE THE OPTION OF WALKING AWAY WITH YOUR CURRENT PRIZE", "\033[1;36m"),
+		"",
 		Color("GUARANTEED LEVELS:", "\033[1;36m"),
 		Color("QUESTION 5  → SAFE POINT", "\033[1;36m"),
 		Color("QUESTION 10 → HIGHER SAFE POINT", "\033[1;36m"),
@@ -46,6 +48,7 @@ func Introduction() {
 		"",
 		Color("ONCE USED... THEY CANNOT BE USED AGAIN.", "\033[1;36m"),
 		Color("...", "\033[1;36m"),
+		Color("TYPE <help> FOR HELP", "\033[36m"),
 		Color("ARE YOU READY?", "\033[1;36m"),
 	}
 

@@ -36,12 +36,15 @@ func Question() {
 		fmt.Println(Color("---------------------------------", "\033[1;37m"))
 		fmt.Printf(Color("        QUESTION %v OF 20\n", "\033[1;37m"), question+1)
 		fmt.Println(Color("---------------------------------", "\033[1;37m"))
-		fmt.Printf(Color("FOR THIS QUESTION, YOUR PRIZE MONEY IS ₦%v\n", "\033[1;36m"), maps[i][6])
+		TypeEffectFast([]string{
+			(Color("FOR THIS QUESTION, YOUR PRIZE MONEY IS; ", "\033[1;36m")),
+			fmt.Sprintf((Color("₦%v", "\033[1;32m")), maps[i][6]),
+		})
 		fmt.Println(Color(maps[i][0], "\033[1;37m"))
-		TypeEffectFast(maps[i][1:2])
-		TypeEffectFast(maps[i][2:4])
-		TypeEffectFast(maps[i][4:5])
-
+		TypeEffectFast([]string{
+			fmt.Sprintf("%-20s %-s", maps[i][1], maps[i][2]),
+			fmt.Sprintf("%-20s %-s", maps[i][3], maps[i][4]),
+		})
 
 	start:
 		fmt.Print(Color(" ANSWER: ", "\033[1;36;4m"))
@@ -50,6 +53,19 @@ func Question() {
 
 		if answer == "LIFELINE" {
 			fmt.Println()
+			if (strings.Contains(usedLifeline, "50:50") || strings.Contains(usedLifeline, "1")) &&
+				(strings.Contains(usedLifeline, "hint") || strings.Contains(usedLifeline, "2")) &&
+				(strings.Contains(usedLifeline, "suggestion") || strings.Contains(usedLifeline, "3")) {
+
+				TypeEffectFast([]string{
+					Color("YOU ARE OUT OF LIFELINES", "\033[1;31m"),
+					Color("PROCEED TO ANSWER THE QUESTION BY YOURSELF CHOOSE WALKAWAY", "\033[31"),
+					"",
+				})
+
+				goto start
+			}
+
 			fmt.Print(Color("LIFELINES ARE;\n 1. 50:50\n 2. HINT\n 3. SUGGESTION\n", "\033[1;35m"))
 			fmt.Println()
 		star:
@@ -57,6 +73,19 @@ func Question() {
 
 			lifeline, _ := reader.ReadString('\n')
 			lifeline = strings.ToLower(strings.TrimSpace(lifeline))
+			if lifeline == "walkaway" {
+				TypeEffectFast([]string{
+					fmt.Sprintf(Color("YOU ARE ABOUT TO WALK AWAY WITH YOUR CURRENT PRIZE MONEY ₦%v", "\033[1;32m"), maps[i][6]),
+					"",
+				})
+				fmt.Print(Color("PRESS ENTER TO CONTINUE...", "\033[1;32m"))
+				reader.ReadString('\n')
+				AccessingPrize()
+			}
+			if lifeline == "help" {
+				AskForHelp()
+				goto start
+			}
 			if lifeline == "hint" || lifeline == "2" {
 				err := CheckIfLifelineHasBeenUsed(strings.Contains(usedLifeline, "hint"))
 				if err != nil {
@@ -75,7 +104,7 @@ func Question() {
 				if err != nil {
 					fmt.Println(err)
 					fmt.Println()
-					goto start
+					goto star
 				} else {
 					CreatorsSuggestions(i)
 					usedLifeline += "suggestion"
@@ -88,7 +117,7 @@ func Question() {
 				if err != nil {
 					fmt.Println(err)
 					fmt.Println()
-					goto start
+					goto star
 				} else {
 					FiftyFifty(maps[i], i)
 					fmt.Println(strings.Join(maps[i][:1], "\n"))
@@ -97,7 +126,28 @@ func Question() {
 					goto start
 				}
 			}
+		} 
+		// else {
+		// 	TypeEffectFast([]string{
+		// 		Color("NOT AN OPTION", "\033[1;31m"),
+		// 		Color("TRY AGAIN", "\033[31"),
+		// 		"",
+		// 	})
+		// 	goto start
 
+		// }
+		if answer == "walkaway" {
+			TypeEffectFast([]string{
+				fmt.Sprintf(Color("YOU ARE ABOUT TO WALK AWAY WITH YOUR CURRENT PRIZE MONEY ₦%v", "\033[1;32m"), maps[i][6]),
+				"",
+			})
+			fmt.Print(Color("PRESS ENTER TO CONTINUE...", "\033[1;32m"))
+			reader.ReadString('\n')
+			AccessingPrize()
+		}
+		if answer == "help" {
+			AskForHelp()
+			goto start
 		}
 		if answer == maps[i][len(maps[i])-3] {
 			TypeEffectFast([]string{
@@ -120,7 +170,7 @@ func Question() {
 			TypeEffectFast([]string{
 				" ",
 				Color("CHECKING ANSWER...", "\033[1;33m")})
-			time.Sleep(4 * time.Second)
+			time.Sleep(3 * time.Second)
 
 			TypeEffectFast([]string{
 				Color("THE CORRECT ANSWER IS...", "\033[1;33m")})
@@ -135,14 +185,17 @@ func Question() {
 			}
 			if question < 10 && question >= 5 {
 				fmt.Println(Color("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦20,000", "\033[1;32m"))
+				time.Sleep(3 * time.Second)
 				AccessingPrize()
 			}
 			if question < 15 && question >= 10 {
 				fmt.Println(Color("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦500,000", "\033[1;32m"))
+				time.Sleep(3 * time.Second)
 				AccessingPrize()
 			}
 			if question < 20 && question >= 15 {
 				fmt.Println(Color("THE PRIZE FOR YOUR PREVIOUS GUARANTEED LEVEL IS ₦3,000,000", "\033[1;32m"))
+				time.Sleep(3 * time.Second)
 				AccessingPrize()
 			}
 
