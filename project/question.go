@@ -56,27 +56,30 @@ func Question() {
 			goto start
 		}
 
-		if answer == "WALKAWAY" && question > 0 {
-			TypeEffectFast([]string{
-				"",
-				fmt.Sprintf(Color("YOU ARE ABOUT TO WALK AWAY WITH YOUR CURRENT PRIZE MONEY ₦%v", "\033[1;32m"), maps[i-1][6]),
-				"",
-			})
-			fmt.Print(Color("PRESS ENTER TO CONTINUE...", "\033[1;32m"))
-			reader.ReadString('\n')
-			AccessingPrize()
-		} else {
-			TypeEffectFast([]string{
-				Color("YOU HAVE NO CURRENT PRIZE THEREFORE YOU ARE WALKING AWAY EMPTY", "\033[1;31m"),
-				Color("DO YOU STILL WANT TO PROCEED?", "\033[1;31m"),
-				Color("IF YES?", "\033[31m"),
-				Color("PRESS ENTER TO CONTINUE...", "\033[1;33m"),
-				"",
-			})
-			reader.ReadString('\n')
-			return
+		if answer == "WALKAWAY" {
+			if question > 0 {
+				TypeEffectFast([]string{
+					"",
+					fmt.Sprintf(Color("YOU ARE ABOUT TO WALK AWAY WITH YOUR CURRENT PRIZE MONEY ₦%v", "\033[1;31m"), maps[i-1][6]),
+					Color("DO YOU STILL WANT TO PROCEED?", "\033[1;31m"),
+					Color("IF YES?", "\033[1;33m"),
+					"",
+				})
+				fmt.Print(Color("PRESS ENTER TO CONTINUE...", "\033[1;33m"))
+				reader.ReadString('\n')
+				AccessingPrize()
+			} else {
+				TypeEffectFast([]string{
+					Color("YOU HAVE NO CURRENT PRIZE THEREFORE YOU ARE WALKING AWAY EMPTY", "\033[1;31m"),
+					Color("DO YOU STILL WANT TO PROCEED?", "\033[1;31m"),
+					Color("IF YES?", "\033[1;33m"),
+					"",
+				})
+				fmt.Println(Color("PRESS ENTER TO CONTINUE...", "\033[1;33m"))
+				reader.ReadString('\n')
+				return
+			}
 		}
-
 		if answer == "LIFELINE" {
 			fmt.Println()
 			if (strings.Contains(usedLifeline, "50:50") || strings.Contains(usedLifeline, "1")) &&

@@ -4,6 +4,7 @@ import "fmt"
 
 func AskForHelp() {
 	lines := []string{
+		"",
 		Color("GUARANTEED LEVELS:", "\033[1;35m"),
 		Color("QUESTION 5  → SAFE POINT", "\033[1;35m"),
 		Color("QUESTION 10 → HIGHER SAFE POINT", "\033[1;35m"),
@@ -16,7 +17,9 @@ func AskForHelp() {
 		Color("ONCE USED... THEY CANNOT BE USED AGAIN.", "\033[1;35m"),
 		"",
 		Color("WALKAWAY - TO LEAVE WITH YOUR CURRENT PRIZE.", "\033[1;35m"),
+		"",
 	}
+
 	for _, line := range lines {
 		fmt.Println(line)
 	}
