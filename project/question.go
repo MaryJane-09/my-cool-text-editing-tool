@@ -62,18 +62,19 @@ func Question() {
 					"",
 					fmt.Sprintf(Color("YOU ARE ABOUT TO WALK AWAY WITH YOUR CURRENT PRIZE MONEY ₦%v", "\033[1;31m"), maps[i-1][6]),
 					Color("DO YOU STILL WANT TO PROCEED?", "\033[1;31m"),
-					Color("IF YES?", "\033[1;33m"),
 					"",
+					Color("IF YES?", "\033[1;33m"),
 				})
 				fmt.Print(Color("PRESS ENTER TO CONTINUE...", "\033[1;33m"))
 				reader.ReadString('\n')
 				AccessingPrize()
 			} else {
 				TypeEffectFast([]string{
+					"",
 					Color("YOU HAVE NO CURRENT PRIZE THEREFORE YOU ARE WALKING AWAY EMPTY", "\033[1;31m"),
 					Color("DO YOU STILL WANT TO PROCEED?", "\033[1;31m"),
-					Color("IF YES?", "\033[1;33m"),
 					"",
+					Color("IF YES?", "\033[1;33m"),
 				})
 				fmt.Println(Color("PRESS ENTER TO CONTINUE...", "\033[1;33m"))
 				reader.ReadString('\n')
@@ -102,20 +103,8 @@ func Question() {
 
 			lifeline, _ := reader.ReadString('\n')
 			lifeline = strings.ToLower(strings.TrimSpace(lifeline))
-			if lifeline == "walkaway" {
-				TypeEffectFast([]string{
-					"",
-					fmt.Sprintf(Color("YOU ARE ABOUT TO WALK AWAY WITH YOUR CURRENT PRIZE MONEY ₦%v", "\033[1;33m"), maps[i][6]),
-				})
-				fmt.Print(Color("PRESS ENTER TO CONTINUE...", "\033[1;33m"))
-				reader.ReadString('\n')
-				AccessingPrize()
-			}
-			if lifeline == "help" {
-				AskForHelp()
-				goto start
-			}
-			if lifeline == "hint" || lifeline == "2" {
+			switch lifeline {
+			case "hint", "2":
 				err := CheckIfLifelineHasBeenUsed(strings.Contains(usedLifeline, "hint"))
 				if err != nil {
 					fmt.Println(err)
@@ -127,8 +116,8 @@ func Question() {
 					fmt.Println()
 					goto start
 				}
-			}
-			if lifeline == "suggestion" || lifeline == "3" {
+
+			case "suggestion", "3":
 				err := CheckIfLifelineHasBeenUsed(strings.Contains(usedLifeline, "suggestion"))
 				if err != nil {
 					fmt.Println(err)
@@ -140,8 +129,8 @@ func Question() {
 					fmt.Println()
 					goto start
 				}
-			}
-			if lifeline == "50:50" || lifeline == "1" {
+
+			case "50:50", "1":
 				err := CheckIfLifelineHasBeenUsed(strings.Contains(usedLifeline, "50:50"))
 				if err != nil {
 					fmt.Println(err)
@@ -154,17 +143,25 @@ func Question() {
 					usedLifeline += "50:50"
 					goto start
 				}
+
+			default:
+				TypeEffectFast([]string{
+					Color("NOT A LIFELINE", "\033[1;31m"),
+					Color("TYPE <HELP> TO SEE AVAILBLE LIFLINES", "\033[31m"),
+					"",
+				})
+				goto start
 			}
 		}
-		// else {
-		// 	TypeEffectFast([]string{
-		// 		Color("NOT AN OPTION", "\033[1;31m"),
-		// 		Color("TRY AGAIN", "\033[31"),
-		// 		"",
-		// 	})
-		// 	goto start
-
-		// }
+		if answer != "A" && answer != "B" && answer != "C" && answer != "D" {
+			TypeEffectFast([]string{
+				"",
+				Color("INVALID ANSWER FORMAT ❌", "\033[1;31m"),
+				Color("PLEASE ENTER THE OPTION LETTER (A, B, C OR D).", "\033[1;31m"),
+				"",
+			})
+			goto start
+		}
 
 		if answer == maps[i][len(maps[i])-3] {
 			TypeEffectFast([]string{
