@@ -1,2 +1,2 @@
-# my-cool-text-editing-tool
+# my-cool-text-editing-tool.
 
