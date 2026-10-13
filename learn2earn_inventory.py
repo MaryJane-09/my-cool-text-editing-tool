@@ -8,7 +8,7 @@ resources = [
 fellows = {"F001": "Ada", "F002": "John", "F003": "Grace"}
 borrow_records = []
 
-LOW_STOCK_LIMIT = 3
+LOW_STOCK_LIMIT = 4
 
 
 
