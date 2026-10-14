@@ -89,14 +89,14 @@ func hasNumber(s string) bool {
 
 func main() {
 
-	fmt.Println(" ")
+	fmt.Println()
 	fmt.Println(style("*************** WELCOME TO MJ'S COOL TEXT EDITING TOOL ****************", "\033[1;33m"))
-	fmt.Println(" ")
+	fmt.Println()
 
 	reader := bufio.NewReader(os.Stdin)
 	for {
 
-		fmt.Println(" ")
+		fmt.Println()
 		fmt.Print(style("TEXT: ", "\033[1;33m"))
 
 		word, _ := reader.ReadString('\n')
@@ -118,22 +118,22 @@ func main() {
 
 		var result string
 
-		fmt.Println(" ")
+		fmt.Println()
 		fmt.Println(style("************* AVAILABLE OPERATIONS ***************", "\033[1;35m"))
-		fmt.Println(" ")
+		fmt.Println()
 
 		for {
 
-			fmt.Println(" ")
+			fmt.Println()
 			fmt.Println(style("PLEASE SELECT AN OPERATION: ", "\033[1;33m"))
-			fmt.Println(" ")
+			fmt.Println()
 			fmt.Println(style("1. LAST CHARACTER", "\033[1;34m"))
 			fmt.Println(style("2. UPPERCASE WORDS", "\033[1;34m"))
 			fmt.Println(style("3. DELETE INDEX", "\033[1;34m"))
 			fmt.Println(style("4. REVERSE WORD", "\033[1;34m"))
 			fmt.Println(style("5. COUNT CHARACTERS", "\033[1;34m"))
 			fmt.Println(style("6. EXIT PROGRAM", "\033[1;34m"))
-			fmt.Println(" ")
+			fmt.Println()
 
 			fmt.Print(style("OPTION: ", "\033[1;30m"))
 
